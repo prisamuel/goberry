@@ -1,4 +1,9 @@
-###1.0.0
+###1.1.0 24/07/2015
+
+* Integrate go-kit logger.
+* Make service registration configurable.
+
+###1.0.0 24/07/2015
 
 * Placeholder RAML file for API interface and documentation.
 * Import ramlapi package for automatic API generation.

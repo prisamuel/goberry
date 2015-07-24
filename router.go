@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -10,21 +11,18 @@ import (
 
 var router *mux.Router
 
-// RouteMap maps endpoint labels to handlers.
-var RouteMap map[string]http.HandlerFunc
-
 // NewRouter creates a mux router, sets up
 // a static handler and registers the dynamic
 // routes and middleware handlers with the mux.
 func NewRouter(ramlFile string) *mux.Router {
 	router = mux.NewRouter().StrictSlash(true)
 	// Assemble middleware as required.
-	// assembleMiddleware(router)
+	assembleMiddleware(router)
 	assembleRoutes(router, ramlFile)
 	return router
 }
 
-// assembleMiddleware sets up the middleware stack for gref.
+// assembleMiddleware sets up the middleware stack.
 func assembleMiddleware(r *mux.Router) {
 	http.Handle("/",
 		JSONMiddleware(
@@ -38,8 +36,8 @@ func assembleRoutes(r *mux.Router, f string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Println("Processing API spec for", api.Title)
-	log.Println("Base URI at", api.BaseUri)
+	logChannel("raml-processor", fmt.Sprintf("processing API spec for %s", api.Title))
+	logChannel("raml-processor", fmt.Sprintf("base URI at %s", api.BaseUri))
 	ramlapi.Build(api, routerFunc)
 }
 

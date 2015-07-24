@@ -1,13 +1,15 @@
 {
 	"ImportPath": "github.com/EconomistDigitalSolutions/goberry",
-	"GoVersion": "go1.4",
-	"Packages": [
-		"./..."
-	],
+	"GoVersion": "go1.4.2",
 	"Deps": [
 		{
 			"ImportPath": "github.com/EconomistDigitalSolutions/ramlapi",
 			"Rev": "4814c7b595023172add8eb4b4ca44d239103e8f5"
+		},
+		{
+			"ImportPath": "github.com/buddhamagnet/goconsul",
+			"Comment": "0.2.0",
+			"Rev": "74fa979699b9b5c7e05cc13231213fcc10f3dc4a"
 		},
 		{
 			"ImportPath": "github.com/buddhamagnet/raml",
@@ -16,6 +18,10 @@
 		{
 			"ImportPath": "github.com/buddhamagnet/yaml",
 			"Rev": "e401b2b026855a4fa8e7014d553ae5bdfccb21cd"
+		},
+		{
+			"ImportPath": "github.com/go-kit/kit/log",
+			"Rev": "60805884e061fbbffd3ec70645b2d3907dd89c71"
 		},
 		{
 			"ImportPath": "github.com/gorilla/context",
@@ -29,6 +35,15 @@
 			"ImportPath": "github.com/joho/godotenv",
 			"Comment": "v1-6-gf658182",
 			"Rev": "f6581828bb37238bc1ce8e561d9e4050630a304d"
+		},
+		{
+			"ImportPath": "gopkg.in/logfmt.v0",
+			"Rev": "c50dc9aa845e681529d8e49d3dc11ec0195aacac"
+		},
+		{
+			"ImportPath": "gopkg.in/stack.v1",
+			"Comment": "v1.1",
+			"Rev": "3311a467df6af5844aa1b9d748e4d004b109b984"
 		}
 	]
 }

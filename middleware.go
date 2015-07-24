@@ -19,7 +19,7 @@ func JSONMiddleware(h http.Handler) http.Handler {
 func LoggingMiddleware(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		h.ServeHTTP(w, r)
-		log.Printf("REQUEST: [%s] %q\n", r.Method, r.URL.String())
+		logRequest(r)
 	})
 }
 
