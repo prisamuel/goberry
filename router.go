@@ -10,6 +10,9 @@ import (
 
 var router *mux.Router
 
+// RouteMap maps endpoint labels to handlers.
+var RouteMap map[string]http.HandlerFunc
+
 // NewRouter creates a mux router, sets up
 // a static handler and registers the dynamic
 // routes and middleware handlers with the mux.
