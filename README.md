@@ -25,6 +25,11 @@ variables for everything contained in this file.
 The Makefile provides the following:
 
 * `gomkbuild`: build the application binary.
+* `gomkinstall`: install the application binary.
+* `buildstamp`: build the appication binary, and when the binary is run
+  with the --version flag, log build date and build commit hash (default stdout).
+  * `installstamp`: install the appication binary, and when the binary is run
+  with the --version flag, log build date and build commit hash (default stdout).
 * `gomkxbuild`: build all cross-platform binaries, using `gox`.
 * `gomkclean`: clean the project directory.
 * `vet`: run `go tool vet` on each source file.

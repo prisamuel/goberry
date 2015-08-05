@@ -51,6 +51,15 @@ $(APPBIN): gomkbuild
 .PHONY: gomkbuild
 gomkbuild: goenvcheck $(GOSOURCES) ; @go build
 
+.PHONY: gomkinstall
+gomkinstall: goenvcheck $(GOSOURCES) ; @go install
+
+.PHONY: buildstamp
+buildstamp: goenvcheck $(GOSOURCES) ; @go build -ldflags "-X main.buildstamp `date -u '+%Y-%m-%d_%I:%M:%S%p'` -X main.githash `git rev-parse HEAD`"
+
+.PHONY: installstamp
+installstamp: goenvcheck $(GOSOURCES) ; @go install -ldflags "-X main.buildstamp `date -u '+%Y-%m-%d_%I:%M:%S%p'` -X main.githash `git rev-parse HEAD`"
+
 .PHONY: gomkxbuild
 gomkxbuild: ; $(GOX)
 
