@@ -17,6 +17,9 @@ import (
 
 var (
 	port                string
+	buildstamp          string
+	githash             string
+	version             string
 	ramlFile            string
 	serviceName         string
 	serviceRegistration string
@@ -25,6 +28,7 @@ var (
 
 func init() {
 	flag.StringVar(&port, "port", ":9494", "port to listen on")
+	flag.StringVar(&version, "version", "", "output build date and commit data")
 	flag.StringVar(&ramlFile, "ramlFile", "api.raml", "RAML file to parse")
 
 	if err := godotenv.Load(); err != nil {
@@ -54,6 +58,10 @@ func main() {
 	flag.Parse()
 
 	NewRouter(ramlFile)
+
+	if version != "" {
+		logChannel("build", fmt.Sprintf("build date: %s commit: %s", buildstamp, githash))
+	}
 
 	logChannel("information", fmt.Sprintf("%s up on port %s", serviceName, port))
 	log.Fatal(http.ListenAndServe(port, nil))

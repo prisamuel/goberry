@@ -35,6 +35,14 @@ The Makefile provides the following:
 * `cover`: run tests with coverage report in all pkgs in the project.
 * `printvars`: print all variables defined in the Makefile.
 
+### BUILD INFORMATION
+
+To build the service and drop build date information, build as follows:
+
+```go build -ldflags "-X main.buildstamp `date -u '+%Y-%m-%d_%I:%M:%S%p'` -X main.githash `git rev-parse HEAD`"```
+
+Then run <binary> --version=yes
+
 ### TESTS
 
 Run ```make test``` for boring old black and white test output.
