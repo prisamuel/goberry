@@ -535,8 +535,8 @@ type Method struct {
 
 	// Briefly describes what the method does to the resource
 	Description string
- 
-        DisplayName string `yaml:"displayName"`
+
+	DisplayName string `yaml:"displayName"`
 
 	// Applying a securityScheme definition to a method overrides whichever
 	// securityScheme has been defined at the root level. To indicate that
@@ -704,7 +704,7 @@ type APIDefinition struct {
 	// base URI parameters are available for replacement:
 	//
 	// version - The content of the version field.
-	BaseUri string `yaml:"baseUri"`
+	BaseUri string
 	// TODO: If a URI template variable in the base URI is not explicitly
 	// described in a baseUriParameters property, and is not specified in a
 	// resource-level baseUriParameters property, it MUST still be treated as

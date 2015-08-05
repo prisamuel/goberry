@@ -12,12 +12,6 @@ import (
 	"strings"
 )
 
-var (
-	ErrorNoHostOrPath = errors.New("mux: route doesn't have a host or path")
-	ErrorNoHost       = errors.New("mux: route doesn't have a host")
-	ErrorNoPath       = errors.New("mux: route doesn't have a path")
-)
-
 // Route stores information to match a request and build URLs.
 type Route struct {
 	// Parent where the route was registered (a Router).
@@ -441,7 +435,7 @@ func (r *Route) URL(pairs ...string) (*url.URL, error) {
 		return nil, r.err
 	}
 	if r.regexp == nil {
-		return nil, ErrorNoHostOrPath
+		return nil, errors.New("mux: route doesn't have a host or path")
 	}
 	values, err := r.prepareVars(pairs...)
 	if err != nil {
@@ -475,7 +469,7 @@ func (r *Route) URLHost(pairs ...string) (*url.URL, error) {
 		return nil, r.err
 	}
 	if r.regexp == nil || r.regexp.host == nil {
-		return nil, ErrorNoHost
+		return nil, errors.New("mux: route doesn't have a host")
 	}
 	values, err := r.prepareVars(pairs...)
 	if err != nil {
@@ -499,7 +493,7 @@ func (r *Route) URLPath(pairs ...string) (*url.URL, error) {
 		return nil, r.err
 	}
 	if r.regexp == nil || r.regexp.path == nil {
-		return nil, ErrorNoPath
+		return nil, errors.New("mux: route doesn't have a path")
 	}
 	values, err := r.prepareVars(pairs...)
 	if err != nil {
