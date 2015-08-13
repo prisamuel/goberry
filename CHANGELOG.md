@@ -1,3 +1,7 @@
+###1.2.0 13/08/2015
+
+* Import expvar package for low level metrics.
+
 ###1.1.0 24/07/2015
 
 * Integrate go-kit logger.

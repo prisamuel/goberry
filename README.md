@@ -57,3 +57,8 @@ Run ```pride``` to get nicely colorized test output.
 ### SERVICE DISCOVERY
 
 The goconsul.json file is present to hook up to a package being built to plug into [consul](https://www.consul.io)
+
+### METRICS
+
+This codebase provides low level metrics using the built-in expvar package. Simply navigate to /debug/vars to see basic 
+memory allocation and stack use information. 
