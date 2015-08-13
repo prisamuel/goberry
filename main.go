@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "expvar"
 	"flag"
 	"fmt"
 	"log"
@@ -11,8 +12,9 @@ import (
 	"github.com/buddhamagnet/goconsul"
 	"github.com/joho/godotenv"
 
-	kitlog "github.com/go-kit/kit/log"
 	stdlog "log"
+
+	kitlog "github.com/go-kit/kit/log"
 )
 
 var (
