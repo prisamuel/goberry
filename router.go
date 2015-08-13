@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/EconomistDigitalSolutions/ramlapi"
+	"github.com/EconomistDigitalSolutions/watchman/journal"
 	"github.com/gorilla/mux"
 )
 
@@ -36,8 +37,8 @@ func assembleRoutes(r *mux.Router, f string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	logChannel("raml-processor", fmt.Sprintf("processing API spec for %s", api.Title))
-	logChannel("raml-processor", fmt.Sprintf("base URI at %s", api.BaseUri))
+	journal.LogChannel("raml-processor", fmt.Sprintf("processing API spec for %s", api.Title))
+	journal.LogChannel("raml-processor", fmt.Sprintf("base URI at %s", api.BaseUri))
 	ramlapi.Build(api, routerFunc)
 }
 

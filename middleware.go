@@ -3,6 +3,8 @@ package main
 import (
 	"log"
 	"net/http"
+
+	"github.com/EconomistDigitalSolutions/watchman/journal"
 )
 
 // JSONMiddleware writes the appropriate content type
@@ -19,7 +21,7 @@ func JSONMiddleware(h http.Handler) http.Handler {
 func LoggingMiddleware(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		h.ServeHTTP(w, r)
-		logRequest(r)
+		journal.LogRequest(r)
 	})
 }
 

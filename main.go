@@ -1,7 +1,6 @@
 package main
 
 import (
-	_ "expvar"
 	"flag"
 	"fmt"
 	"log"
@@ -9,12 +8,11 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/EconomistDigitalSolutions/watchman/journal"
+	_ "github.com/EconomistDigitalSolutions/watchman/meter"
+
 	"github.com/buddhamagnet/goconsul"
 	"github.com/joho/godotenv"
-
-	stdlog "log"
-
-	kitlog "github.com/go-kit/kit/log"
 )
 
 var (
@@ -25,7 +23,6 @@ var (
 	ramlFile            string
 	serviceName         string
 	serviceRegistration string
-	logger              kitlog.Logger
 )
 
 func init() {
@@ -39,14 +36,11 @@ func init() {
 
 	serviceName = os.Getenv("SERVICE_NAME")
 	serviceRegistration = os.Getenv("SERVICE_REGISTRATION")
+	journal.Service = serviceName
 
 	if serviceName == "" {
 		serviceName = filepath.Base(os.Args[0])
 	}
-
-	// Integrate go-kit logger.
-	logger = kitlog.NewJSONLogger(os.Stdout)
-	stdlog.SetOutput(kitlog.NewStdlibAdapter(logger))
 }
 
 func main() {
@@ -62,9 +56,9 @@ func main() {
 	NewRouter(ramlFile)
 
 	if version != "" {
-		logChannel("build", fmt.Sprintf("build date: %s commit: %s", buildstamp, githash))
+		journal.LogChannel("build", fmt.Sprintf("build date: %s commit: %s", buildstamp, githash))
 	}
 
-	logChannel("information", fmt.Sprintf("%s up on port %s", serviceName, port))
+	journal.LogChannel("information", fmt.Sprintf("%s up on port %s", serviceName, port))
 	log.Fatal(http.ListenAndServe(port, nil))
 }

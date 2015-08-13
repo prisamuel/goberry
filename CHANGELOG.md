@@ -1,3 +1,7 @@
+###1.3.0 13/08/2015
+
+* Import watchman package for logging and metrics.
+
 ###1.2.0 13/08/2015
 
 * Import expvar package for low level metrics.
